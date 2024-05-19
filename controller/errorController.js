@@ -23,7 +23,9 @@ const handleJsonWebTokenError = (err) => {
 const handleTokenExpiredError = (err) => {
   return new AppError("Expired Token. PLease login again", 401);
 };
-
+const handleInvalidObjectIdError = (err) => {
+  return new AppError("Invalid User ID found. Please retry.", 401);
+};
 const sendErrorDev = (err, req, res) => {
   //API
   if (req.originalUrl.startsWith("/api")) {
@@ -104,6 +106,9 @@ module.exports = (err, req, res, next) => {
     //Expired JWT key
     if (error.name === "TokenExpiredError") {
       error = handleTokenExpiredError(error);
+    }
+    if (error.kind === "ObjectId") {
+      error = handleInvalidObjectIdError(error);
     }
 
     sendErrorProd(error, req, res);

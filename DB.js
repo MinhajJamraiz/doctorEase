@@ -34,6 +34,7 @@ const connectDB = () => {
     })
     .catch((ex) => {
       logger.error(`'DB Connection Unsuccessfull'`);
+
       process.exit(1);
     });
 };

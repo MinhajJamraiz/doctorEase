@@ -7,17 +7,23 @@
     "start": "node server",
     "server": "nodemon server",
     "start:prod": "SETprocess.env.NODEENV=production nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Minhaj Jamraiz",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "create-react-app": "^5.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.1",
+    "ibm-watson": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.3",
+    "redux": "^4.2.1",
     "validator": "^13.11.0",
     "winston": "^3.12.0"
   },

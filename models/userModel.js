@@ -31,6 +31,13 @@ const userSchema = mongoose.Schema({
     },
     default: "patient",
   },
+  profileImage: {
+    type: String,
+    default: "profile.png",
+  },
+  passwordChangedAt: {
+    type: Date,
+  },
 });
 userSchema.pre("save", async function (next) {
   //Only run this function if password was modified.
@@ -50,6 +57,21 @@ userSchema.methods.correctPassword = async function (
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
+userSchema.pre(/^find/, function (next) {
+  //Find above is a regular expression.It is used so that all functions starting with find are included in it.
+  this.find({ active: { $ne: false } });
+  next();
+});
+userSchema.methods.passwordChangedAfter = function (JWTTimestamp) {
+  if (this.passwordChangedAt) {
+    const changedTimestamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10 //base of ParseInt
+    );
 
+    return JWTTimestamp < changedTimestamp;
+  }
+  return false;
+};
 const User = mongoose.model("User", userSchema);
 module.exports = User;

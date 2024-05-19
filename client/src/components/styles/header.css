@@ -1,0 +1,136 @@
+.list {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* NAVIGRATION BAR */
+.nav {
+  background: rgb(24, 86, 255);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 5px 1rem;
+  align-items: center;
+  border-bottom: 1px solid #ffffff;
+}
+.nav__list {
+  width: 100%;
+  margin: 0;
+}
+.nav__item {
+  padding: 0.5rem 0.2rem;
+
+  border-bottom: 1px solid #ffffff;
+}
+.nav__item > a {
+  color: white;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+.nav__item > a:hover {
+  /* color: #3c139c; */
+  color: rgb(0, 162, 255);
+}
+.nav__menu-btn {
+  opacity: 0.5;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.nav.collapsible--expanded .nav__menu-btn {
+  opacity: 1;
+  box-shadow: 0 0 0px 3px #ffffff;
+  border-radius: 5px;
+}
+.nav__logo {
+  transform: translateY(4px);
+}
+.nav__profile-item {
+  margin: 0;
+  padding: 0;
+}
+.nav__profile-image {
+  height: 2.5rem;
+  width: 2.5rem;
+  background-color: white;
+  border-radius: 50%;
+}
+@media screen and (min-width: 768px) {
+  .nav__menu-btn {
+    display: none;
+  }
+  .nav__list {
+    width: auto;
+    display: flex;
+    max-height: 100%;
+    opacity: 1;
+  }
+  .nav__item {
+    margin: 0 1rem;
+    border: 0;
+  }
+}
+/* Collapsible */
+
+.collapsible__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.collapsible__heading {
+  margin-top: 0;
+  font-size: 3rem;
+}
+.collapsible__icon {
+  transform: rotate(0);
+  transition: transform 0.3s;
+}
+.collapsible__content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.collapsible--expanded .collapsible__icon {
+  transform: rotate(180deg);
+}
+.collapsible.collapsible--expanded .collapsible__content {
+  max-height: 100vh;
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  .collapsible__content {
+    max-height: 100vh;
+    opacity: 1;
+  }
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+}
+.icon--white {
+  fill: white;
+}
+
+.header-main-btn {
+  font-weight: bold;
+  background-color: rgb(24, 86, 255);
+  border: 0;
+  height: 50px;
+  width: 150px;
+  min-width: fit-content;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  transition: all 0.5s;
+  border-radius: 5px;
+}
+
+.header-main-btn:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(24, 86, 255);
+}
+@media (max-width: 862px) {
+  .header-main-btn {
+    max-width: 100px;
+  }
+}

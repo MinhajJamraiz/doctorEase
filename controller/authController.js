@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const { promisify } = require("util");
+
 const User = require("../models/userModel");
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
@@ -68,8 +70,43 @@ const createSendToken = (user, statusCode, res) => {
   res.status(statusCode).json({
     status: "success",
     token,
-    data: {
-      user,
-    },
+  });
+};
+
+// exports.verify = catchAsync(async (req, res, next) => {
+//   //Verifying User using the JWT token.
+//   //Get Token from the header.
+//   const token = req.headers("x-auth-token");
+
+//   //Check if no Token.
+//   if (!token) {
+//     return res.status(401).json({
+//       message: "NO token found. Authorization Denied.",
+//     });
+//   }
+//   const decoded
+// });
+
+exports.auth = catchAsync(async (req, res, next) => {
+  const token = req.header("x-auth-token");
+  if (!token) {
+    return next(
+      new AppError("You are not logged In. Please login to continue ", 401)
+    );
+  }
+
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  req.user = decoded;
+  return next();
+});
+
+exports.logout = (req, res) => {
+  res.clearCookie("jwt", {
+    httpOnly: true,
+  });
+  logger.info("User Logout Successful.");
+  res.status(200).json({
+    status: "success",
+    token: "",
   });
 };

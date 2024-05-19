@@ -1,0 +1,194 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(7, 7, 167);
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.text {
+  color: rgb(156, 156, 156);
+  font-size: 14px;
+}
+
+.appname {
+  color: rgb(24, 86, 255);
+}
+
+.form-input {
+  background-color: rgb(250, 250, 250);
+  font-size: 16px;
+  height: 40px;
+  width: 15rem;
+  border: solid rgb(190, 190, 190) 1px;
+  display: flex;
+  margin-top: 20px;
+  padding-left: 10px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.input-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  height: 100%;
+}
+
+.social-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-button {
+  background-color: rgb(7, 7, 167);
+  border: none;
+  color: white;
+  font-size: 16px;
+  width: 15rem;
+  height: 40px;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.main-button:hover {
+  background-color: rgb(19, 19, 206);
+}
+
+.main-button:active {
+  background-color: rgb(79, 79, 204);
+}
+
+.social-login {
+  background-color: white;
+  border: solid rgb(190, 190, 190) 1px;
+  border-radius: 5px;
+  height: 40px;
+  width: 145px;
+  margin-right: 10px;
+  color: rgb(156, 156, 156);
+  font-size: 14px;
+  vertical-align: middle;
+  align-items: center;
+  text-align: center;
+  transition: background-color;
+}
+
+.social-login:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+.forgot-password-div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+}
+
+.remember-me-div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  vertical-align: middle;
+  align-items: center;
+}
+
+.remember-checkbox {
+  margin-left: 10px;
+}
+
+.no-account-div {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  background-color: white;
+  width: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-graphic {
+  width: 50vw;
+  background-color: rgb(24, 86, 255);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: fit-content;
+  max-width: none;
+  min-height: fit-content;
+}
+
+.side-img {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.side-text {
+  color: white;
+  text-align: center;
+}
+
+.logo {
+  max-width: 15px;
+  max-height: 13px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .side-graphic {
+    display: none;
+  }
+
+  .login-form {
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+}
+/* ----------------- container-------- */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+------------------- Grid ---------- .grid {
+  display: grid;
+}
+.grid--1x2 {
+  grid-template-columns: 50% 50%;
+}

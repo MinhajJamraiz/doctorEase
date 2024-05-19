@@ -7,7 +7,7 @@ connectDB();
 
 //SERVER HOSTING
 app.get("/", (req, res) => res.send("API Running !!"));
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   logger.info(`Application listening on port ${PORT}!`);
 });
