@@ -9,3 +9,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const INTENT_SAVED = "INTENT_SAVED";
 export const INTENT_FAILED = "INTENT_FAILED";
+export const GET_REPORTS = "GET_REPORTS";
+export const DELETE_REPORTS = "DELETE_REPORTS";
+export const USER_UPDATED = "USER_UPDATED";
+export const USER_UPDATE_FAILED = "USER_UPDATE_FAILED";

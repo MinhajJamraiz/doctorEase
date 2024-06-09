@@ -30,7 +30,7 @@ form {
   width: 15rem;
   border: solid rgb(190, 190, 190) 1px;
   display: flex;
-  margin-top: 20px;
+  margin-top: 2px;
   padding-left: 10px;
   border-radius: 8px;
   outline: none;
@@ -43,6 +43,14 @@ form {
   align-items: center;
   padding: 0px 10px;
   height: 100%;
+}
+.input {
+  margin-top: 20px;
+}
+.input__label-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
 }
 
 .social-div {

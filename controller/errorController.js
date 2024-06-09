@@ -30,6 +30,7 @@ const sendErrorDev = (err, req, res) => {
   //API
   if (req.originalUrl.startsWith("/api")) {
     logger.error(`Error found. ||| ${err.message}`);
+    console.log(err.stack);
     return res.status(err.statusCode).json({
       status: err.status,
       message: err.message,

@@ -8,9 +8,12 @@ import Chatbox from "./components/chatbox";
 import NotFound from "./components/notFound";
 import Header from "./components/header";
 import DiagnosisHistory from "./components/diagnosisHistory";
-
+import XrayAnalysis from "./components/xrayAnalysis";
+import ReportAnalysis from "./components/reportAnalysis";
+import UserProfile from "./components/userProfile";
 import Alert from "./components/alert";
 import { loadUser } from "./actions/auth";
+
 //REDUX
 import store from "./store";
 import { Provider } from "react-redux";
@@ -38,6 +41,9 @@ function App() {
           <Route path='/signup' element={<SignupForm />} />
           <Route path='/chatbox' element={<Chatbox />} />
           <Route path='/history' element={<DiagnosisHistory />} />
+          <Route path='/xrayAnalysis' element={<XrayAnalysis />} />
+          <Route path='/reportAnalysis' element={<ReportAnalysis />} />
+          <Route path='/userProfile' element={<UserProfile />} />
 
           <Route path='*' element={<NotFound />} />
         </Routes>

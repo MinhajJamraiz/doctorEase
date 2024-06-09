@@ -7,6 +7,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  USER_UPDATED,
+  USER_UPDATE_FAILED,
 } from "./types";
 import { setAlert } from "./alert";
 import setAuthToken from "./../utils/setAuthToken";
@@ -31,6 +33,52 @@ export const loadUser = () => async (dispatch) => {
   // }
 };
 
+//UPDATE USER
+export const updatePassword =
+  ({ id, password, newPassword }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const updatedUser = JSON.stringify({
+      id,
+      password,
+      newPassword,
+    });
+    if (!password || !newPassword) {
+      dispatch(setAlert("Password or New Password can not be empty", "error"));
+      return;
+    }
+    try {
+      const res = await axios.patch(
+        "http://localhost:5000/api/v1/user/updateMyPassword",
+        updatedUser,
+        config
+      );
+      dispatch({
+        type: USER_UPDATED,
+        payload: res.data,
+      });
+      dispatch(loadUser());
+      dispatch(setAlert("User Password Updated Successfully", "success"));
+      window.setTimeout(() => {
+        window.location.reload(true);
+      }, 1000);
+    } catch (err) {
+      console.log(err.response.data);
+      if (
+        err.response.data.message &&
+        err.response.data.message === "Incorrect current password."
+      ) {
+        dispatch(setAlert(`${err.response.data.message}`, "error"));
+      } else {
+        dispatch(setAlert(`${err.response.data.message}`, "error"));
+        dispatch({ type: USER_UPDATE_FAILED });
+      }
+    }
+  };
 //REGISTER USER
 export const register =
   ({ name, email, password }) =>
@@ -47,7 +95,7 @@ export const register =
     });
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/users/signup",
+        "http://localhost:5000/api/v1/user/signup",
         newUser,
         config
       );
@@ -112,7 +160,7 @@ export const login =
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/users/login",
+        "http://localhost:5000/api/v1/user/login",
         user,
         config
       );
@@ -144,4 +192,5 @@ export const login =
 //LOGOUT == CLEAR PROFILE
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT });
+  dispatch(setAlert("User Logout Successful", "success"));
 };

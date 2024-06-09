@@ -1,7 +1,7 @@
 const catchAsync = require("../utils/catchAsync");
-const Report = require("./../models/reportModel");
-const logger = require("./../utils/logger");
-const AppError = require("./../utils/appError");
+const Report = require("../models/reportModel");
+const logger = require("../utils/logger");
+const AppError = require("../utils/appError");
 
 exports.create = catchAsync(async (req, res, next) => {
   const newReport = await Report.create(req.body);

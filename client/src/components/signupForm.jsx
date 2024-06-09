@@ -88,34 +88,43 @@ const SignupForm = ({ register }) => {
             </p>
           // </div> */}
           <div className='input-div'>
-            <input
-              className='form-input'
-              type='text'
-              placeholder='Name'
-              name='name'
-              value={name}
-              onChange={(e) => onChange(e)}
-              // required
-            />
-            <input
-              className='form-input'
-              type='email'
-              name='email'
-              placeholder='Email'
-              value={email}
-              onChange={(e) => onChange(e)}
-              // required
-            />
-            <input
-              className='form-input'
-              name='password'
-              type='password'
-              placeholder='Password'
-              value={password}
-              onChange={(e) => onChange(e)}
-              // required
-              // minLength='8'
-            />
+            <div className='input'>
+              <p className='input__label-name'>Name</p>
+              <input
+                className='form-input'
+                type='text'
+                placeholder='Name'
+                name='name'
+                value={name}
+                onChange={(e) => onChange(e)}
+                // required
+              />
+            </div>
+            <div className='input'>
+              <p className='input__label-name'>Email</p>
+              <input
+                className='form-input'
+                type='email'
+                name='email'
+                placeholder='Email'
+                value={email}
+                onChange={(e) => onChange(e)}
+                // required
+              />
+            </div>
+            <div className='input'>
+              <p className='input__label-name'>Password</p>
+              <input
+                className='form-input'
+                name='password'
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={(e) => onChange(e)}
+                // required
+                // minLength='8'
+              />
+            </div>
           </div>
           <div className='button-div' type='submit'>
             <button className='main-button'>Sign Up</button>

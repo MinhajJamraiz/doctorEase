@@ -1,3 +1,9 @@
 node_modules/
 config.env
 themes/
+MURA-v1.1/
+MURA/
+trainModel.py/
+utils/modelLoader.js
+data/diseases.js
+

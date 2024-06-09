@@ -29,6 +29,12 @@ const Header = ({ logout }) => {
         <Link to='/chatbox'>Diagnose</Link>
       </li>
       <li className='nav__item'>
+        <Link to='/history'>History</Link>
+      </li>
+      <li className='nav__item'>
+        <Link to='/reportAnalysis'>Report Analysis</Link>
+      </li>
+      <li className='nav__item'>
         {!user ? "" : <Link to='#'>{user.name.trim().split(" ")[0]}</Link>}
       </li>
       <li className='nav__item'>
@@ -37,12 +43,14 @@ const Header = ({ logout }) => {
         </Link>
       </li>
       <li className='nav__item nav__profile-item'>
-        <img
-          className='nav__profile-image'
-          // src={!user ? "" : require(`./images/${user.profileImage}`)}
-          src={require("./images/model2.jpg")}
-          alt=''
-        />
+        <Link to='/userProfile'>
+          <img
+            className='nav__profile-image'
+            // src={!user ? "" : require(`./images/${user.profileImage}`)}
+            src={!user ? "" : require(`./images/users/${user.profileImage}`)}
+            alt=''
+          />
+        </Link>
       </li>
     </ul>
   );

@@ -14,7 +14,9 @@
   "author": "Minhaj Jamraiz",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "create-react-app": "^5.0.1",
@@ -23,7 +25,13 @@
     "ibm-watson": "^8.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.3",
+    "multer": "^1.4.5-lts.1",
+    "natural": "^7.0.6",
+    "node-pre-gyp": "^0.17.0",
+    "path": "^0.12.7",
     "redux": "^4.2.1",
+    "sharp": "^0.33.4",
+    "tesseract.js": "^5.1.0",
     "validator": "^13.11.0",
     "winston": "^3.12.0"
   },

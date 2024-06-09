@@ -127,6 +127,7 @@
 
 .chat-history {
   overflow-y: scroll;
+
   height: 80vh;
 }
 
@@ -175,7 +176,7 @@
 }
 
 /* ---------- Button --------------------- */
-.button {
+.button-chatbox {
   padding: 8px;
   border: none;
   background-color: rgb(24, 86, 255);

@@ -54,6 +54,24 @@ const signToken = (id) => {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
+
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  //1> Get user from collection.
+  const user = await User.findById(req.body.id).select("+password");
+
+  //2> Check if posted current password is correct.
+  if (!(await user.correctPassword(req.body.password, user.password))) {
+    return next(new AppError("Incorrect current password.", 401));
+  }
+  //3> If so, update the password.
+  user.password = req.body.newPassword;
+
+  await user.save();
+  //4> Login User and send JWT.
+  createSendToken(user, 200, res);
+
+  logger.info("Password Update Successful.");
+});
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
   const cookieOptions = {
@@ -96,6 +114,10 @@ exports.auth = catchAsync(async (req, res, next) => {
   }
 
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  const user = await User.findById(decoded.id);
+  if (user.passwordChangedAfter(decoded.iat)) {
+    return next(new AppError("Password Changed. Please login again. ", 401));
+  }
   req.user = decoded;
   return next();
 });

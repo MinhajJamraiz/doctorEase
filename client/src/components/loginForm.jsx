@@ -88,22 +88,28 @@ const LoginForm = ({ login }) => {
             ----------------- Or continue with Email ----------------
           </p>
           <div className='input-div'>
-            <input
-              className='form-input'
-              type='email'
-              placeholder='Email'
-              name='email'
-              onChange={(e) => onChange(e)}
-              required
-            />
-            <input
-              className='form-input'
-              type='password'
-              placeholder='Password'
-              name='password'
-              onChange={(e) => onChange(e)}
-              required
-            />
+            <div className='input'>
+              <p className='input__label-name'>Email</p>
+              <input
+                className='form-input'
+                type='email'
+                placeholder='Email'
+                name='email'
+                onChange={(e) => onChange(e)}
+                required
+              />
+            </div>
+            <div className='input'>
+              <p className='input__label-name'>Password</p>
+              <input
+                className='form-input'
+                type='password'
+                placeholder='Password'
+                name='password'
+                onChange={(e) => onChange(e)}
+                required
+              />
+            </div>
           </div>
           <div className='remember-me-div'>
             <p className='text'>Remember me</p>

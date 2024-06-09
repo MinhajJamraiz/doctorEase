@@ -1,55 +1,55 @@
+/* eslint-disable*/
+
 import "./styles/diagnosisHistory.css";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { connect, useSelector } from "react-redux";
+import { setReports } from "./../actions/report";
+import PropTypes from "prop-types";
+import { Navigate } from "react-router-dom";
 
 import axios from "axios";
 
-const DiagnosisHistory = () => {
+const DiagnosisHistory = ({ setReports }) => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   const user = useSelector((state) => state.auth.user);
-  if (user) {
-    console.log(user._id);
-    const body = JSON.stringify({
-      user: "65fe07727421050174f5f071",
-    });
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    axios
-      .get("http://localhost:5000/api/v1/report/getAll")
-      .then((reports) => console.log(reports))
-      .catch((err) => console.log(err));
-    //     console.log(user);
+
+  const reports = useSelector((state) => state.report[0]);
+
+  useEffect(() => {
+    if (user) {
+      setReports({ id: user._id });
+    }
+  }, []);
+
+  if (!isAuthenticated) {
+    return <Navigate to='/' />;
   }
-  //   console.log(userReports);
   return (
     <div className='log-area'>
-      <div className='history-log'>
-        <div className='log-content'>
-          <p className='log-text'>ID: #123123</p>
-          <p className='log-text'>Date: 4-8-2024</p>
-        </div>
-        <button className='log-details-button'>Check Details</button>
-      </div>
-
-      <div className='history-log'>
-        <div className='log-content'>
-          <p className='log-text'>ID: #123123</p>
-          <p className='log-text'>Date: 4-8-2024</p>
-        </div>
-        <button className='log-details-button'>Check Details</button>
-      </div>
-
-      <div className='history-log'>
-        <div className='log-content'>
-          <p className='log-text'>ID: #123123</p>
-          <p className='log-text'>Date: 4-8-2024</p>
-        </div>
-        <button className='log-details-button'>Check Details</button>
-      </div>
+      <div className='history-heading'>DIAGNOSIS HISTORY</div>
+      {!reports ? (
+        <div className='error'>NO REPORTS FOUND</div>
+      ) : (
+        reports.map((report, index) => (
+          <div
+            key={index}
+            className={`history-log history-log--${report.status}`}
+          >
+            <div className='log-content'>
+              <p className='log-text'>ID: {report._id}</p>
+              <p className='log-text'>Date: {report.date}</p>
+            </div>
+            <button className='log-details-button'>Check Details</button>
+          </div>
+        ))
+      )}
     </div>
   );
 };
 
-export default DiagnosisHistory;
+DiagnosisHistory.proptypes = {
+  setReports: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setReports })(DiagnosisHistory);

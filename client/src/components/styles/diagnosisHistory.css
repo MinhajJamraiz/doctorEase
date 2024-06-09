@@ -61,7 +61,6 @@ body {
   align-items: center;
   width: 60%;
   min-width: fit-content;
-  background-color: rgb(0, 162, 255);
   color: white;
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
@@ -69,6 +68,27 @@ body {
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
+}
+.history-log--green {
+  background-color: green;
+}
+.history-log--red {
+  background-color: red;
+}
+.history-log--yellow {
+  background-color: yellow;
+  color: black;
+}
+
+.history-heading {
+  color: rgb(46, 111, 250);
+  font-weight: 900;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  border: 5px solid rgb(46, 111, 250);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .log-content {

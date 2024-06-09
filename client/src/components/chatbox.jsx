@@ -6,14 +6,18 @@ import sendMsg from "./images/send-msg.png";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { setIntent, removeIntent } from "./../actions/intent";
+import { setAlert } from "../actions/alert";
 import PropTypes from "prop-types";
 // import ChatComponent from "./chatComponent";
 
-const Chatbox = ({ setIntent, removeIntent }) => {
+const Chatbox = ({ setIntent, removeIntent, setAlert }) => {
   const intent = useSelector((state) => state.intent[0]);
   const authUser = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [isComplete, setIsComplete] = useState(false);
+
   // useEffect(() => {
   //   const newChatHistory = [
   //     ...chatHistory,
@@ -24,18 +28,18 @@ const Chatbox = ({ setIntent, removeIntent }) => {
   //   setChatHistory(newChatHistory);
   // }, [intent]);
   // console.log(intent);
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  // if (!isAuthenticated) {
-  //   return <Navigate to='/' />;
-  // }
   const [message, setMessage] = useState("");
   const [report, setReport] = useState(false);
   const [chatHistory, setChatHistory] = useState([
     { sender: "bot", message: "Hello, What seems to be the problem ?." },
   ]);
+  if (!isAuthenticated) {
+    return <Navigate to='/' />;
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    // e.stopPropagation();
 
     if (report) {
       const body = JSON.stringify({
@@ -43,12 +47,13 @@ const Chatbox = ({ setIntent, removeIntent }) => {
         description: intent.action,
         status: intent.status,
       });
+
       const config = {
         headers: {
           "Content-Type": "application/json",
         },
       };
-      const report = await axios
+      await axios
         .post("http://localhost:5000/api/v1/report/create", body, config)
         .then((report) => {
           setReport(false);
@@ -56,7 +61,18 @@ const Chatbox = ({ setIntent, removeIntent }) => {
             removeIntent(); //Remove previous intent before adding current Intent
           }
           //SET ALERT with 5000 timeout
+          const newChatHistory = [
+            ...chatHistory,
+            {
+              sender: "bot",
+              message:
+                "Report Generated. Click the button below to view Report History.",
+            },
+          ];
+          setChatHistory(newChatHistory);
           //JUMP to report page.
+          // setTimeout(() => {
+          // }, 5000);
         })
         .catch((err) => {
           console.log(err);
@@ -67,7 +83,6 @@ const Chatbox = ({ setIntent, removeIntent }) => {
       }
       setIntent({ message })
         .then((intent) => {
-          // handleMessage(message);
           if (intent && !intent.status) {
             const newChatHistory = [
               ...chatHistory,
@@ -80,7 +95,6 @@ const Chatbox = ({ setIntent, removeIntent }) => {
 
             setChatHistory(newChatHistory);
             setMessage("");
-            // console.log(chatHistory);
           } else if (intent && intent.status) {
             const newChatHistory = [
               ...chatHistory,
@@ -97,6 +111,7 @@ const Chatbox = ({ setIntent, removeIntent }) => {
 
             setChatHistory(newChatHistory);
             setMessage("");
+            setIsComplete(true);
           } else {
             const newChatHistory = [
               ...chatHistory,
@@ -119,7 +134,7 @@ const Chatbox = ({ setIntent, removeIntent }) => {
   };
 
   const handleButtons = () => {
-    if (!intent) {
+    if (!intent && !isComplete) {
       return (
         <div className='user-input-container'>
           <input
@@ -131,7 +146,7 @@ const Chatbox = ({ setIntent, removeIntent }) => {
               setMessage(e.target.value);
             }}
           />
-          <button type='submit' className='button button--send'>
+          <button type='submit' className='button-chatbox button--send'>
             Send
           </button>
         </div>
@@ -140,7 +155,7 @@ const Chatbox = ({ setIntent, removeIntent }) => {
       return (
         <div className='user-radio-container'>
           <button
-            className='button button--radio'
+            className='button-chatbox button--radio'
             name='answer'
             value='YES'
             type='radio'
@@ -151,7 +166,7 @@ const Chatbox = ({ setIntent, removeIntent }) => {
             YES
           </button>
           <button
-            className='button button--radio'
+            className='button-chatbox button--radio'
             name='answer'
             value='NO'
             type='radio'
@@ -163,7 +178,7 @@ const Chatbox = ({ setIntent, removeIntent }) => {
           </button>
         </div>
       );
-    } else {
+    } else if (intent && intent.status) {
       return (
         <div className='user-report-container'>
           <button
@@ -171,9 +186,17 @@ const Chatbox = ({ setIntent, removeIntent }) => {
               setReport(true);
             }}
             type='submit'
-            className='button button-report'
+            className='button-chatbox button-report'
           >
             GENERATE REPORT
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div className='user-report-container'>
+          <button type='submit' className='button-chatbox button-report'>
+            <Link to='/history'> Go To Reports History</Link>
           </button>
         </div>
       );
@@ -259,5 +282,6 @@ const Chatbox = ({ setIntent, removeIntent }) => {
 Chatbox.proptypes = {
   setIntent: PropTypes.func.isRequired,
   removeIntent: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
 };
-export default connect(null, { setIntent, removeIntent })(Chatbox);
+export default connect(null, { setIntent, removeIntent, setAlert })(Chatbox);

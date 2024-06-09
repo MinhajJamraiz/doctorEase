@@ -6,7 +6,6 @@ export const setIntent =
   async (dispatch, getState) => {
     try {
       const state = getState();
-      console.log(state);
       //Get All Intents
       const intents = await axios.get("http://localhost:5000/api/v1/intent");
       //   JSON.stringify(intents);
@@ -17,9 +16,14 @@ export const setIntent =
       const filteredIntents = Object.entries(intents.data.intents).filter(
         ([key, value]) => value.status
       );
-      console.log(filteredIntents);
+
       const matchedIntent = intents.data.intents.filter((intent) => {
         if (
+          intent.examples.length === 0 &&
+          intent.name === message.toLowerCase()
+        ) {
+          return intent;
+        } else if (
           intent.examples.some((example) =>
             message.toLowerCase().includes(example.toLowerCase())
           )
