@@ -7,9 +7,7 @@ const userRouter = require("./routes/userRoutes");
 const authRouter = require("./routes/authRoutes");
 const DiagnosisReportRouter = require("./routes/diagnosisReportRoutes");
 const reportAnalysisRouter = require("./routes/reportAnalysisRoutes");
-const watsonRouter = require("./routes/watsonRoutes");
 const intentRouter = require("./routes/intentRoutes");
-const xrayRouter = require("./routes/xrayRoutes");
 const diseaseRouter = require("./routes/diseaseRoutes");
 
 const globalErrorHandler = require("./controller/errorController");
@@ -30,9 +28,7 @@ app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/report", DiagnosisReportRouter);
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/watson", watsonRouter);
 app.use("/api/v1/intent", intentRouter);
-app.use("/api/v1/xray", xrayRouter);
 app.use("/api/v1/reportAnalysis", reportAnalysisRouter);
 app.use("/api/v1/disease", diseaseRouter);
 
