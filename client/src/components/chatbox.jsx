@@ -39,12 +39,16 @@ const Chatbox = ({ setIntent, removeIntent, setAlert }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
     // e.stopPropagation();
 
+    //Report Generation step.
     if (report) {
       const body = JSON.stringify({
         user: authUser._id,
-        description: intent.action,
+        name: intent.name,
+        action: intent.action,
+        description: intent.diagnosis,
         status: intent.status,
       });
 
@@ -53,10 +57,12 @@ const Chatbox = ({ setIntent, removeIntent, setAlert }) => {
           "Content-Type": "application/json",
         },
       };
+
       await axios
         .post("http://localhost:5000/api/v1/report/create", body, config)
         .then((report) => {
           setReport(false);
+
           if (intent !== null) {
             removeIntent(); //Remove previous intent before adding current Intent
           }
@@ -81,8 +87,10 @@ const Chatbox = ({ setIntent, removeIntent, setAlert }) => {
       if (intent !== null) {
         removeIntent(); //Remove previous intent before adding current Intent
       }
+
       setIntent({ message })
         .then((intent) => {
+          //Mid Intent
           if (intent && !intent.status) {
             const newChatHistory = [
               ...chatHistory,
@@ -96,13 +104,18 @@ const Chatbox = ({ setIntent, removeIntent, setAlert }) => {
             setChatHistory(newChatHistory);
             setMessage("");
           } else if (intent && intent.status) {
+            //Final Intent
             const newChatHistory = [
               ...chatHistory,
               {
                 sender: "user",
                 message: message,
               },
-              { sender: "bot", message: intent.action },
+              { sender: "bot", message: intent.action ? intent.action : "" },
+              {
+                sender: "bot",
+                message: intent.diagnosis ? intent.diagnosis : "",
+              },
               {
                 sender: "bot",
                 message: `DIAGNOSIS COMPLETE !!! : Click the button below to generate the final report of this session.`,
@@ -113,6 +126,7 @@ const Chatbox = ({ setIntent, removeIntent, setAlert }) => {
             setMessage("");
             setIsComplete(true);
           } else {
+            //NOT FOUND INTENT
             const newChatHistory = [
               ...chatHistory,
               { sender: "user", message },
@@ -221,8 +235,12 @@ const Chatbox = ({ setIntent, removeIntent, setAlert }) => {
                 <div key={index} className='message-box'>
                   <img
                     className='message-box__icon '
-                    src={require("./images/defaultUser.png")}
-                    alt='User Image'
+                    src={
+                      item.sender === "user"
+                        ? require(`./images/users/${authUser.profileImage}`)
+                        : require("./images/easebot.png")
+                    }
+                    alt={authUser ? authUser.name : ""}
                   />
                   <div className={`chat-message chat-message--${item.sender}`}>
                     <p>{item.message}</p>

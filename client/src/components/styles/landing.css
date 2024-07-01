@@ -80,12 +80,24 @@
   top: -20px;
   right: -20px;
 }
+.office-photo--reverse {
+  left: -20px;
+}
+@media (max-width: 767px) {
+  .office-photo--reverse {
+    left: 20px;
+  }
+}
 @media (max-width: 380px) {
   .about-section {
     padding: 40px 0 20px 0;
   }
   .office-photo {
     right: 0;
+    top: 0;
+  }
+  .office-photo--reverse {
+    left: 0;
   }
 }
 .about-text {
@@ -94,6 +106,17 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 20px 35px 20px 70px;
+}
+.about-text--reverse {
+  order: -1;
+}
+@media (max-width: 767px) {
+  .about-text {
+    order: 0;
+  }
+  .about-section {
+    border: solid rgb(190, 190, 190) 2px;
+  }
 }
 
 .subheading {
@@ -156,6 +179,7 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
+  margin-top: 30px;
 }
 
 .doctor-img-bg {
@@ -246,10 +270,6 @@
 
 .newsletter-div {
   position: relative;
-}
-
-.footer {
-  margin-top: 150px;
 }
 
 @media (max-width: 767px) {

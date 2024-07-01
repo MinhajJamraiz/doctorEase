@@ -1,25 +1,41 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./styles/xrayAnalysis.css"; // Import the CSS file
+import "./styles/reportAnalysis.css";
 
 const XrayAnalysis = () => {
-  const [file, setFile] = useState(null);
-  const [predictions, setPredictions] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [boneType, setBoneType] = useState("");
+  const [fracturePrediction, setFracturePrediction] = useState("");
+  const [error, setError] = useState("");
+  const [imagePreview, setImagePreview] = useState("");
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+    // Display image preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+    if (event.target.files[0]) {
+      reader.readAsDataURL(event.target.files[0]);
+    } else {
+      setImagePreview("");
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!file) return;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!selectedFile) {
+      setError("Please select a file first!!");
+      return;
+    }
 
     const formData = new FormData();
-    formData.append("xray", file);
+    formData.append("file", selectedFile);
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/xray/predict",
+        "http://127.0.0.1:5000/predict",
         formData,
         {
           headers: {
@@ -27,33 +43,68 @@ const XrayAnalysis = () => {
           },
         }
       );
-      setPredictions(response.data.predictions);
+
+      setBoneType(response.data.bone_type);
+      setFracturePrediction(response.data.fracture_prediction);
+      setError("");
     } catch (error) {
-      console.error("Error uploading file:", error);
+      console.error("Error uploading the file:", error);
+      // setError("Error predicting the image. Please try again.");
+      setError(error.response.data);
+
+      setBoneType("");
+      setFracturePrediction("");
     }
   };
 
   return (
-    <div className='upload-container'>
-      <h1 className='upload-title'>Upload X-ray Image</h1>
-      <form className='upload-form' onSubmit={handleSubmit}>
-        <input
-          className='upload-input'
-          type='file'
-          onChange={handleFileChange}
-        />
-        <button className='upload-button' type='submit'>
-          Upload
-        </button>
-      </form>
-      {predictions && (
-        <div className='predictions-container'>
-          <h2 className='predictions-title'>Predictions:</h2>
-          <pre className='predictions-content'>
-            {JSON.stringify(predictions, null, 2)}
-          </pre>
+    <div className='ReportAnalysis'>
+      <div className='report--container'>
+        <h1 className='title'>Xray Analysis</h1>
+        <p className='xray-warning'>Currently Limited to body parts in Arm</p>
+        <p className='xray-warning'>
+          Shoulder Humerus Elbow Forearm Wrist Hand Finger
+        </p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <form onSubmit={handleSubmit} className='form'>
+            <input
+              type='file'
+              accept='image/*'
+              className='file-input'
+              onChange={handleFileChange}
+            />
+            <br />
+            <button className='submit-button' type='submit'>
+              Predict
+            </button>
+          </form>
+          {selectedFile && (
+            <div style={{ marginTop: "20px", textAlign: "center" }}>
+              <img
+                src={imagePreview}
+                alt='Uploaded'
+                style={{ maxWidth: "300px", maxHeight: "300px" }}
+              />
+            </div>
+          )}
+          {error && <p className='error'>{error}</p>}
+          {boneType && fracturePrediction && (
+            <div style={{ marginTop: "20px", textAlign: "center" }}>
+              <h2 className='result-title'>Bone Type</h2>
+              <p className='result-text'>{boneType}</p>
+              <h2 className='result-title'>Fracture Prediction:</h2>
+              <p className='result-text'>{fracturePrediction}</p>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

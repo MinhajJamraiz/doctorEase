@@ -3,7 +3,7 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   vertical-align: middle;
-  padding: 0 2% 0 2%;
+  padding: 50px 2% 0 2%;
   align-items: center;
   min-width: fit-content;
   min-height: fit-content;
@@ -23,7 +23,16 @@
   color: white;
   transition: background-color 0.3s ease;
 }
-
+.footer__copyright {
+  color: white;
+  text-align: right;
+  font-size: 10px;
+}
+@media (min-width: 768px) {
+  .footer__copyright {
+    font-size: 15px;
+  }
+}
 .nav-button:hover {
   background-color: rgb(65, 116, 255);
 }

@@ -6,15 +6,14 @@ const Intro = () => {
     <div className='intro'>
       <div className='intro-section container'>
         <div className='intro-text'>
-          <p className='text-white'>Healthcare Service</p>
+          <p className='text-white'>Healthcare Website</p>
           <h1 className='text-white intro-heading'>
             Better care for your health
           </h1>
           <p className='text-white appname'>DoctorEase</p>
           <p className='text-white'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+            No time for a doctor ? We've got you covered.
           </p>
-          <button className='button'>Learn More</button>
         </div>
         <div className='intro-graphic'>
           <img className='images' src={introDoctor} />

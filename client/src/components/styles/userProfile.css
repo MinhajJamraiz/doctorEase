@@ -16,7 +16,7 @@
 }
 
 .sidebar-option {
-  display: flex;
+  /* display: flex; */
   color: white;
   width: 100%;
   height: 50px;
@@ -26,6 +26,20 @@
   justify-content: center;
   transition: background-color 0.3s ease;
   cursor: pointer;
+}
+.sidebar-link {
+  text-decoration: none;
+  color: white;
+}
+.sidebar-selected {
+  width: 100%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border: none;
+  background-color: white;
+  color: rgb(24, 86, 255);
 }
 
 .sidebar-option:hover {

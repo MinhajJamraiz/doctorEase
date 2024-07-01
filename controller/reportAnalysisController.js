@@ -114,7 +114,7 @@ const diagnoseText = (text) => {
       return `${diagnosis}`;
     }
   }
-  return "No Specific Diagnosis found";
+  return "No Specific Disease found for these symptoms";
 };
 
 function compareArray(arr1, arr2) {

@@ -16,28 +16,53 @@ export const setIntent =
       const filteredIntents = Object.entries(intents.data.intents).filter(
         ([key, value]) => value.status
       );
-
-      const matchedIntent = intents.data.intents.filter((intent) => {
+      // const matchedIntent = intents.data.intents.filter((intent) => {
+      //   let count = 0;
+      //   console.log(count);
+      //   if (
+      //     intent.examples.length === 0 &&
+      //     intent.name === message.toLowerCase()
+      //   ) {
+      //     console.log(message);
+      //     console.log(intent.name);
+      //     count++;
+      //     return intent;
+      //   } else if (
+      //     count === 0 &&
+      //     intent.examples.some((example) =>
+      //       message.toLowerCase().includes(example.toLowerCase())
+      //     )
+      //   )
+      //     return intent;
+      //   else {
+      //     return;
+      //   }
+      //   // return (
+      //   //   intent.examples.some((example) =>
+      //   //     message.toLowerCase().includes(example.toLowerCase())
+      //   //   ) && intent
+      //   // );
+      // });
+      let matchedIntent = [];
+      matchedIntent = intents.data.intents.filter((intent) => {
         if (
           intent.examples.length === 0 &&
           intent.name === message.toLowerCase()
-        ) {
-          return intent;
-        } else if (
-          intent.examples.some((example) =>
-            message.toLowerCase().includes(example.toLowerCase())
-          )
         )
           return intent;
-        else {
-          return;
-        }
-        // return (
-        //   intent.examples.some((example) =>
-        //     message.toLowerCase().includes(example.toLowerCase())
-        //   ) && intent
-        // );
       });
+      if (matchedIntent.length === 0) {
+        matchedIntent = intents.data.intents.filter((intent) => {
+          if (
+            intent.examples.some((example) =>
+              message.toLowerCase().includes(example.toLowerCase())
+            )
+          )
+            return intent;
+        });
+      }
+      // const item = matchedIntent.length - 1;
+
       if (!matchedIntent[0]) {
         dispatch({ type: INTENT_FAILED });
       } else {

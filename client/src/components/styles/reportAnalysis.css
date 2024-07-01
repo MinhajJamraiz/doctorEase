@@ -64,3 +64,8 @@
 .result-text {
   color: #333;
 }
+
+.xray-warning {
+  color: red;
+  font-size: 0.8rem;
+}

@@ -6,10 +6,11 @@ import signedOut from "./images/defaultUser.png";
 import { updatePassword } from "./../actions/auth";
 import { setAlert } from "./../actions/alert";
 import PropTypes from "prop-types";
+import { logout } from "./../actions/auth";
 
 import axios from "axios";
 
-const UserProfile = ({ updatePassword, setAlert }) => {
+const UserProfile = ({ logout, updatePassword, setAlert }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
   const [userName, setUserName] = useState(`${!user ? "" : user.name}`);
@@ -100,11 +101,19 @@ const UserProfile = ({ updatePassword, setAlert }) => {
   return (
     <div className='profile-container'>
       <div className='sidebar--profile'>
-        <button className='sidebar-option'>Profile</button>
-        <button className='sidebar-option'>
-          <Link to='/history'>Diagnosis History</Link>
+        <button disabled={true} className=' sidebar-selected'>
+          Profile
         </button>
-        <button className='sidebar-option'>Logout</button>
+        <button className='sidebar-option'>
+          <Link className='sidebar-link' to='/history'>
+            Diagnosis History
+          </Link>
+        </button>
+        <button className='sidebar-option'>
+          <Link className='sidebar-link' onClick={logout}>
+            Logout
+          </Link>
+        </button>
       </div>
 
       <div>
@@ -206,6 +215,7 @@ const UserProfile = ({ updatePassword, setAlert }) => {
 UserProfile.propTypes = {
   updatePassword: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
-export default connect(null, { updatePassword, setAlert })(UserProfile);
+export default connect(null, { updatePassword, setAlert, logout })(UserProfile);

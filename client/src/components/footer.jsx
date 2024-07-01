@@ -5,7 +5,7 @@ const Footer = () => {
     <div className='footer'>
       <button className='footer-button footer-heading-btn'>DoctorEase</button>
       <div>
-        <a href='/' target='_self'>
+        {/* <a href='/' target='_self'>
           <button className='footer-button'>Home</button>
         </a>
         <a href='#' target='_self' className='footer-button'>
@@ -16,9 +16,9 @@ const Footer = () => {
         </a>
         <a href='#' target='_self' className='footer-button'>
           <button className='footer-button'>Contact</button>
-        </a>
+        </a> */}
+        <p className='footer__copyright'>© 2024 by Minhaj Jamraiz.</p>
       </div>
-      <div></div>
     </div>
   );
 };

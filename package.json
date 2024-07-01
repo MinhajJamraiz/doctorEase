@@ -8,6 +8,7 @@
     "server": "nodemon server",
     "start:prod": "SETprocess.env.NODEENV=production nodemon server.js",
     "client": "npm start --prefix client",
+    "model": "python app.py --prefix xrayModel",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -17,6 +17,7 @@ form {
 .text {
   color: rgb(156, 156, 156);
   font-size: 14px;
+  text-align: center;
 }
 
 .appname {
@@ -137,6 +138,9 @@ form {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin: 100px auto;
+  max-width: 500px;
+  border-radius: 5px;
 }
 
 .side-graphic {
@@ -185,7 +189,7 @@ button:hover {
     height: fit-content;
     background-color: white;
     border-radius: 10px;
-    margin: 0 auto;
+    margin: 50px auto;
   }
 }
 /* ----------------- container-------- */
@@ -194,9 +198,15 @@ button:hover {
   margin: 0 auto;
 }
 
-------------------- Grid ---------- .grid {
+/* ------------------- Grid ----------  */
+.grid {
   display: grid;
 }
 .grid--1x2 {
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 100% 0%;
+}
+@media (max-width: 768px) {
+  .grid--1x2 {
+    grid-template-columns: 100% 0%;
+  }
 }

@@ -26,22 +26,25 @@ const Header = ({ logout }) => {
         <Link to='#!'>Services</Link>
       </li> */}
       <li className='nav__item'>
-        <Link to='/chatbox'>Diagnose</Link>
+        <Link to='/chatbox'>EaseBot</Link>
       </li>
-      <li className='nav__item'>
+      {/* <li className='nav__item'>
         <Link to='/history'>History</Link>
-      </li>
+      </li> */}
       <li className='nav__item'>
         <Link to='/reportAnalysis'>Report Analysis</Link>
       </li>
       <li className='nav__item'>
-        {!user ? "" : <Link to='#'>{user.name.trim().split(" ")[0]}</Link>}
+        <Link to='/xrayAnalysis'>Xray Analysis</Link>
       </li>
-      <li className='nav__item'>
+      {/* <li className='nav__item'>
+        {!user ? "" : <Link to='#'>{user.name.trim().split(" ")[0]}</Link>}
+      </li> */}
+      {/* <li className='nav__item'>
         <Link onClick={logout} to='#!'>
           Logout
         </Link>
-      </li>
+      </li> */}
       <li className='nav__item nav__profile-item'>
         <Link to='/userProfile'>
           <img

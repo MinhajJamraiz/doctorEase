@@ -9,17 +9,19 @@
   text-align: center;
   justify-content: center;
   border-radius: 10px;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  transform: translateY(15rem);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  transform: translateY(12rem);
+  margin: 20px auto;
+  text-decoration: none;
+  text-align: center;
+  color: white;
 }
 
 .newsletter-title {
   font-size: 25px;
   display: block;
   margin: 0;
-  margin-left: 100px;
-  margin-right: 100px;
 }
 
 .newsletter-subtitle {

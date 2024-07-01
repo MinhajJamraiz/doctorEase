@@ -5,11 +5,12 @@ import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
 import { setReports } from "./../actions/report";
 import PropTypes from "prop-types";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-const DiagnosisHistory = ({ setReports }) => {
+const DiagnosisHistory = ({ setReports, sendReportToDiagnosisDetail }) => {
+  const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   const user = useSelector((state) => state.auth.user);
@@ -21,6 +22,11 @@ const DiagnosisHistory = ({ setReports }) => {
       setReports({ id: user._id });
     }
   }, []);
+  const handleClick = (report) => {
+    const newReport = JSON.stringify(report);
+    sendReportToDiagnosisDetail(report);
+    navigate("/diagnosisDetail");
+  };
 
   if (!isAuthenticated) {
     return <Navigate to='/' />;
@@ -37,10 +43,18 @@ const DiagnosisHistory = ({ setReports }) => {
             className={`history-log history-log--${report.status}`}
           >
             <div className='log-content'>
-              <p className='log-text'>ID: {report._id}</p>
-              <p className='log-text'>Date: {report.date}</p>
+              <p className='log-text'>
+                {report.name.replace(/[^a-zA-Z]/g, "")}
+              </p>
             </div>
-            <button className='log-details-button'>Check Details</button>
+            <button
+              className='log-details-button'
+              onClick={() => {
+                handleClick(report);
+              }}
+            >
+              Check Details
+            </button>
           </div>
         ))
       )}

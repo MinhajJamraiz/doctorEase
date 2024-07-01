@@ -42,6 +42,7 @@ const ReportAnalysis = () => {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
+      console.log(response);
       const diseasebody = {
         name: response.data.diagnosis,
       };
@@ -93,6 +94,7 @@ const ReportAnalysis = () => {
             {!disease ? (
               <div>
                 <h2 className='result-title'>Extracted Text</h2>
+
                 <p className='result-text'>{text}</p>
               </div>
             ) : (

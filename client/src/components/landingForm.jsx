@@ -13,11 +13,10 @@ const Landing = () => {
       <div className='container'>
         <About />
         <Services />
+
         <Doctors />
-        <Testimonies />
       </div>
       <Newsletter />
-
       <Footer />
     </div>
   );

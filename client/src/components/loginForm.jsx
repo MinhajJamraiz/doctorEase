@@ -73,20 +73,10 @@ const LoginForm = ({ login }) => {
           <div className='top-text'>
             <h3>DoctorEase</h3>
             <h2>Log In to your Account</h2>
-            <p className='text'>Welcome Back! Select Method to login</p>
+            <p className='text'>Welcome Back!</p>
+            <p className='text'>Provide your Email and Password below</p>
           </div>
-          <div className='social-div'>
-            <button className='social-login'>
-              <img src={googleLogo} alt='Google Logo' className='logo' /> Google
-            </button>
-            <button className='social-login'>
-              <img src={facebookLogo} alt='Facebook logo' className='logo' />{" "}
-              Facebook
-            </button>
-          </div>
-          <p className='text'>
-            ----------------- Or continue with Email ----------------
-          </p>
+
           <div className='input-div'>
             <div className='input'>
               <p className='input__label-name'>Email</p>
@@ -111,28 +101,28 @@ const LoginForm = ({ login }) => {
               />
             </div>
           </div>
-          <div className='remember-me-div'>
+          {/* <div className='remember-me-div'>
             <p className='text'>Remember me</p>
             <a href='/' target='_self' className='link'>
               Forgot Password
             </a>
-          </div>
+          </div> */}
           <div className='button-div' type='submit'>
             <button className='main-button'>Log In</button>
           </div>
           <div className='no-account-div'>
             <p className='text'>Don't have an account?</p>
             <Link to='/signup' target='_self' className='link'>
-              Create Account
+              Sign up
             </Link>
           </div>
         </form>
-        <div className='side-graphic'>
+        {/* <div className='side-graphic'>
           <img className='side-img' alt='A doctor' src={doctor} />
           <p className='side-text'>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

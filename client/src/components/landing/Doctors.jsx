@@ -15,11 +15,15 @@ const Doctors = () => {
           Caring For The Health And Wellbeing Of You And Your Family
         </h3>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro
-          blanditiis repellat explicabo culpa omnis eaque harum similique sit
-          inventore quis!
+          Our Doctor, EASEBOT , is a bot that uses keywords contained in a
+          sentence to identify what might be the problem. Than it asks well
+          defined questions based on which it gives its results to the user. It
+          is to be noted that the EASEBOT is a computer program that has limited
+          knowledge, can make mistakes and is not operated by a person or a
+          doctor. Our bot is only for suggestions and for comfortable access.
+          You are always suggested to double check with your doctor in case of
+          any confusion.
         </p>
-        <button className='button'>Read More</button>
       </div>
     </div>
   );

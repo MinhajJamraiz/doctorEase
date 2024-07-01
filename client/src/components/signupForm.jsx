@@ -73,7 +73,8 @@ const SignupForm = ({ register }) => {
           <div className='top-text'>
             <h3>DoctorEase</h3>
             <h2>Create Account</h2>
-            <p className='text'>Welcome ! Select Method to Create Account</p>
+            <p className='text'>Welcome!</p>
+            <p className='text'>Sign up for a new account below</p>
           </div>
           {/* <div className='social-div'>
             <button className='social-login'>
@@ -138,12 +139,12 @@ const SignupForm = ({ register }) => {
         </form>
       </div>
 
-      <div className='side-graphic'>
+      {/* <div className='side-graphic'>
         <img className='side-img' alt='A doctor' src={doctor} />
         <p className='side-text'>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit.
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

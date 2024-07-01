@@ -9,6 +9,12 @@ const reportSchema = mongoose.Schema({
   description: {
     type: String,
   },
+  name: {
+    type: String,
+  },
+  action: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now,

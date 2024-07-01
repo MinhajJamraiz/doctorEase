@@ -100,7 +100,8 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   text-align: center;
-  background-color: white;
+  color: white;
+  background-color: rgb(46, 111, 250);
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -108,7 +109,7 @@ body {
 }
 
 .log-details-button:active {
-  background-color: rgb(220, 221, 221);
+  background-color: rgb(5, 88, 136);
 }
 
 .newsletter-section {
@@ -121,4 +122,17 @@ body {
 .newsletter-div {
   position: relative;
   top: -125px;
+}
+
+.report__details {
+  margin: 20px;
+  background-color: white;
+  padding: 1px;
+}
+.report__details-heading {
+  text-align: center;
+  background-color: bisque;
+}
+.report__details__download {
+  padding-top: 5px;
 }

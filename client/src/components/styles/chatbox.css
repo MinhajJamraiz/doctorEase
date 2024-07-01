@@ -84,22 +84,19 @@
 }
 .chatbox-container {
   display: flex;
+  flex-direction: column;
 }
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .chatbox-container {
     flex-direction: column;
   }
-}
+} */
 .sidebar {
   display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
   justify-content: center;
   background-color: rgb(24, 86, 255);
-  padding-top: 3rem;
-  padding-bottom: 6rem;
-  width: 20%;
+  padding: 2px;
+  width: 99%;
 }
 @media (max-width: 768px) {
   .sidebar {
@@ -206,4 +203,7 @@
 .message-box__icon {
   width: 50px;
   height: 50px;
+  background-color: rgb(24, 86, 255);
+  border-radius: 50%;
+  margin-right: 2px;
 }

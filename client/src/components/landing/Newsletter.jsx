@@ -1,22 +1,21 @@
 import "./../styles/newsletter.css";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Newsletter = () => {
+  const user = useSelector((state) => state.auth.user);
+
   return (
     <div className='newsletter-section'>
-      <div className='newsletter-div'>
-        <h3 className='newsletter-title'>Subscribe to our Newsletter</h3>
-        <p className='newsletter-subtitle'>
-          Stay up to date with our latest news, updates and special offers.
-        </p>
-        <div className='newsletter-email-div'>
-          <input
-            className='newsletter-email'
-            type='email'
-            placeholder='Enter your email address'
-          />
-          <button className='newsletter-button'>Send Now</button>
-        </div>
-      </div>
+      {user ? (
+        <Link to='./chatbox' className='newsletter-div'>
+          <p className='newsletter-title'>Click Here to Get Started!</p>
+        </Link>
+      ) : (
+        <Link to='./login' className='newsletter-div'>
+          <p className='newsletter-title'>Login to Get Started!</p>
+        </Link>
+      )}
     </div>
   );
 };
