@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 
+# DenseNet 
+# Multilayer / MultiLevel
+
 from keras.models import load_model
 from keras.applications.densenet import preprocess_input as preprocess_input_densenet
 import numpy as np

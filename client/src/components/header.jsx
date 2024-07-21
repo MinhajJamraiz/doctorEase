@@ -32,7 +32,7 @@ const Header = ({ logout }) => {
         <Link to='/history'>History</Link>
       </li> */}
       <li className='nav__item'>
-        <Link to='/reportAnalysis'>Report Analysis</Link>
+        <Link to='/reportAnalysis'>Symptom Analysis</Link>
       </li>
       <li className='nav__item'>
         <Link to='/xrayAnalysis'>Xray Analysis</Link>

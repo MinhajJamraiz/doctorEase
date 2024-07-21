@@ -44,7 +44,13 @@ const DiagnosisHistory = ({ setReports, sendReportToDiagnosisDetail }) => {
           >
             <div className='log-content'>
               <p className='log-text'>
-                {report.name.replace(/[^a-zA-Z]/g, "")}
+                <b>Initial Problem : </b>
+                {report.name.replace(/[^a-zA-Z]/g, "")} <br />
+                <br />
+                <b>Patient :</b> {report.user.name}
+              </p>
+              <p>
+                <b>Report Id :</b> {report._id}
               </p>
             </div>
             <button

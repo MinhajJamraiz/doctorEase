@@ -11,9 +11,7 @@ const Intro = () => {
             Better care for your health
           </h1>
           <p className='text-white appname'>DoctorEase</p>
-          <p className='text-white'>
-            No time for a doctor ? We've got you covered.
-          </p>
+          <p className='text-white'>Free healthcare for everyone.</p>
         </div>
         <div className='intro-graphic'>
           <img className='images' src={introDoctor} />

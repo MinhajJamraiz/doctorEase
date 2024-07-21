@@ -4,6 +4,9 @@ import serviceTwo from "./../images/service-2.png";
 import serviceThree from "./../images/service-3.png";
 import serviceFour from "./../images/service-4.png";
 import doctorOffice from "./../images/doctor-office.avif";
+import medicalDiagnosis from "./../images/medical-diagnosis.webp";
+import history from "./../images/history.jpg";
+import symptom from "./../images/symptom.jpg";
 
 const Services = () => {
   return (
@@ -62,7 +65,7 @@ const Services = () => {
       </div>
       <div id='medical_diagnosis' className='about-section container'>
         <div className='about-graphic'>
-          <img className='images office-photo' src={doctorOffice} />
+          <img className='images office-photo' src={medicalDiagnosis} />
         </div>
         <div className='about-text'>
           <h3 className='text-blue'>Medical Diagnosis</h3>
@@ -117,7 +120,7 @@ const Services = () => {
       </div>
       <div id='symptom_analysis' className='about-section container'>
         <div className='about-graphic'>
-          <img className='images office-photo' src={doctorOffice} />
+          <img className='images office-photo' src={symptom} />
         </div>
         <div className='about-text'>
           <h3 className='text-blue'>Symptom Analysis</h3>
@@ -144,7 +147,7 @@ const Services = () => {
         <div className='about-graphic'>
           <img
             className='images office-photo office-photo--reverse'
-            src={doctorOffice}
+            src={history}
           />
         </div>
         <div className='about-text about-text--reverse'>
